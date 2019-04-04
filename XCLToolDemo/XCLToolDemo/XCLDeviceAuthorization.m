@@ -44,7 +44,7 @@ typedef void (^XCLDeviceAuthorizationCompletion)(XCLDeviceAuthorizationState);
 
 + (BOOL)multiUsagesAuthorized:(XCLDeviceUsage)usages
 {
-    BOOL authorized = NO;
+    BOOL authorized = YES;
     if (usages & XCLDeviceUsagePhotoLibrary) {
         authorized &= ([self photoLibraryState] == XCLDeviceAuthorizationStateAuthorized);
     }
