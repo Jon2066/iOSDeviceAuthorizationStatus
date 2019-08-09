@@ -60,9 +60,6 @@ typedef void (^XCLDeviceAuthorizationCompletion)(XCLDeviceAuthorizationState);
     if (usages & XCLDeviceUsageContacts) {
         authorized &= ([self contactsState] == XCLDeviceAuthorizationStateAuthorized);
     }
-//    if (usages & XCLDeviceUsageBluetooth) {
-//        authorized &= ([self bluetoothState] == XCLDeviceAuthorizationStateAuthorized);
-//    }
     return authorized;
 }
 
@@ -155,21 +152,6 @@ typedef void (^XCLDeviceAuthorizationCompletion)(XCLDeviceAuthorizationState);
         else if (status == kABAuthorizationStatusNotDetermined){
             return XCLDeviceAuthorizationStateUnset;
         }
-    }
-    return XCLDeviceAuthorizationStateUnknow;
-}
-
-+ (XCLDeviceAuthorizationState)bluetoothState
-{
-    AVAudioSessionRecordPermission status = [AVAudioSession sharedInstance].recordPermission;
-    if (status == AVAudioSessionRecordPermissionDenied) {
-        return XCLDeviceAuthorizationStateRejected;
-    }
-    else if (status == AVAudioSessionRecordPermissionGranted){
-        return XCLDeviceAuthorizationStateAuthorized;
-    }
-    else if (status == AVAudioSessionRecordPermissionUndetermined){
-        return XCLDeviceAuthorizationStateUnset;
     }
     return XCLDeviceAuthorizationStateUnknow;
 }
